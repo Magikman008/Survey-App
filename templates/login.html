@@ -1,0 +1,13 @@
+<h2>Окно входа</h2>
+<!-- Добавьте элементы формы для входа -->
+<form id="login-form" method="POST">
+    {% csrf_token %}
+        <p>
+    <input placeholder="Логин" type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150" required="" id="id_username">
+  </p>
+  <p>
+    <input placeholder="Пароль" type="password" name="password" autocomplete="current-password" required="" id="id_password">
+  </p>
+    <span id="__all__-error" class="error"></span>
+    <button type="submit">Войти</button>
+</form>

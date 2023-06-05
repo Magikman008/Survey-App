@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="page-title">Доступные тесты</div>
+
+    <div class="surveys">
+        {% for survey in surveys %}
+            <div class="survey">
+
+                <a href="{% url 'survey_results' survey.id %}">
+                    <div class="title">{{ survey.title }}</div>
+                    <div class="desc">{{ survey.description }}</div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+

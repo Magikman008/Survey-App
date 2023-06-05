@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="page-title">Создать опрос</div>
+    <form class="survey-make" id="survey-form">
+        {% csrf_token %}
+        <input placeholder="Название" type="text" id="title" name="title" required>
+        <input placeholder="Стоимость" type="number" id="price" min=0 name="title" value=0 required>
+        <textarea placeholder="Описание" id="description" name="description" required></textarea>
+
+        <div id="question-container"></div>
+        <button id="add-question-btn" type="button">Добавить вопрос</button>
+
+        <button id="submit-test" type="button">Сохранить опрос</button>
+    </form>
+
+{% endblock %}

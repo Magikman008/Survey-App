@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="page-title">{{ survey.title }}</div>
+    <div class="desc-text">{{ survey.description }}</div>
+
+    <form id="survey-form-user" value={{ survey.id }}>
+        {% csrf_token %}
+        {% for question in questions %}
+
+            <div class="question-block">
+                <div class="question-text">{{ question.text }}</div>
+                {% if question.is_required == True %}
+                    <div class="required">* Обязательный</div>
+                {% endif %}
+                {% if question.type == 'text' %}
+                    <input type="text" name="question_{{ question.id }}" required>
+                {% elif question.type == 'checkbox' %}
+                    {% for option in question.answeroption_set.all %}
+                        <div class="answer-option">
+                            <input class="custom-checkbox" type="checkbox" name="question_{{ question.id }}"
+                                   value="{{ option.id }}" id="box{{ option.id }}">
+                            <label for="box{{ option.id }}"></label>
+                            <label>{{ option.text }}</label>
+                        </div>
+                    {% endfor %}
+                {% elif question.type == 'radio' %}
+                    {% for option in question.answeroption_set.all %}
+                        <div class="answer-option">
+                            <input class="custom-checkbox" class="custom-checkbox" type="radio" name="question_{{ question.id }}"
+                                   value="{{ option.id }}" id="box{{ option.id }}">
+                            <label for="box{{ option.id }}"></label>
+                            <label>{{ option.text }}</label>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" id="submit-useranswer">Submit</button>
+    </form>
+
+{% endblock %}

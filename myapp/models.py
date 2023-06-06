@@ -1,13 +1,19 @@
-from django.db import models
 from django.contrib.auth.models import User
-# from django.contrib.auth.models import AbstractUser
-#
-#
-# class CustomUser(AbstractUser):
-#     # Добавьте дополнительные поля, необходимые для расширенной модели пользователя
-#     age = models.PositiveIntegerField(null=True, blank=True)
-#     address = models.CharField(max_length=255, null=True, blank=True)
-#     # и так далее...
+from django.core.validators import MinValueValidator
+from django.db import models
+
+
+class Color(models.Model):
+    name = models.CharField(max_length=30)
+    hex_code = models.CharField(max_length=7)
+    cost = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+
+
+class UserMarket(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    balance = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    purchased_colors = models.ManyToManyField('Color', related_name='users')
+    active_color = models.ForeignKey(Color, on_delete=models.CASCADE, default=1)
 
 
 class Survey(models.Model):

@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    <div class="page-title">Магазин цветов</div>
+
+    <div class="cards">
+        {% if user.username != None and user.is_superuser %}
+            <div class="card" style="box-shadow: 0 0 0 0.1rem rgba(123, 123, 123, 0.25);">
+                <div class="color-input">
+                    <input type="text" id="color_hex" placeholder="Цвет в формате Hex">
+                    <input type="text" id="color_cost" placeholder="Цена">
+                    <input type="text" id="color_name" placeholder="Название">
+                    <button class="activated" id="add_color">Добавить цвет</button>
+                </div>
+            </div>
+        {% endif %}
+        {% for color in colors %}
+            <div style="background-color: {{ color.hex_code }} !important;"
+                 class="card{% if color == user_market.active_color %} active-color {% else %} nonactive-color {% endif %}">
+                <div class="card-info" id="{{ color.id }}">
+                    <div class="color-info">
+                        <div class="color-name">{{ color.name }}</div>
+                        <div class="color-currency">Стоимость: {{ color.cost }}<img src="/static/icons/coin.png"></div>
+                    </div>
+                    {% if color == user_market.active_color %}
+                        <div class="activated">Цвет активирован</div>
+                    {% elif color in user_market.purchased_colors.all %}
+                        <button class="activate-button activated" data-color-id="{{ color.id }}">Активировать</button>
+                    {% else %}
+                        <button class="buy-button activated" data-color-id="{{ color.id }}">Купить</button>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+

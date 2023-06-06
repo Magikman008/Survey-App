@@ -7,7 +7,7 @@
 
 
 body {
-    font-family: "Lucinda Grande", "Lucinda Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+    font-family: Arial, Verdana, sans !important;
     margin: 0;
     padding: 0;
 
@@ -36,6 +36,26 @@ header {
     height: 50px;
     display: flex;
     justify-content: center;
+    z-index: 997;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    height: 17px;
+}
+
+.balance {
+    justify-content: flex-end;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    height: 15px;
+    text-align: left;
+}
+
+img {
+    height: 100%;
 }
 
 nav {
@@ -116,14 +136,14 @@ main {
     flex-direction: column;
 }
 
-.surveys {
+.cards {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
     margin: -10px;
 }
 
-.surveys a {
+.cards a {
     text-decoration: none;
     color: black;
     width: 100%;
@@ -131,8 +151,8 @@ main {
     display: block;
 }
 
-.survey {
-    flex-grow: 1;
+.card {
+    flex: 1 0 200px;
     min-width: 200px;
     max-width: 300px;
     height: 200px;
@@ -142,13 +162,15 @@ main {
     border-radius: 10px;
     padding: 10px;
     box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
 }
 
-.survey:hover {
+.card:not(.active-color):hover {
     box-shadow: 0 0 0 0.1rem rgba(123, 123, 123, 0.25);
 }
 
-.survey .title {
+.card .title {
     font-weight: bold;
     font-size: 24px;
     color: black;
@@ -215,6 +237,20 @@ footer {
     padding: 10px;
 }
 
+.no-access {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+.no-access p {
+    width: 50%;
+    text-align: center;
+}
 
 .switch {
     position: relative;
@@ -238,19 +274,19 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #d3d3d3;
-    -webkit-transition: .2s;
-    transition: .2s;
+    background-color: var(--buttons-color);
+    -webkit-transition: all .2s;
+    transition: all .2s;
     border-radius: 10px;
 }
 
 .slider:before {
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, .4);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .4);
     position: absolute;
     content: "";
     height: 20px;
     width: 20px;
-    left: 0px;
+    left: 0;
     background-color: white;
     -webkit-transition: .2s;
     transition: .2s;
@@ -267,22 +303,65 @@ input:checked + .slider:before {
     transform: translateX(28px);
 }
 
-.user a div {
+.user a div, .user div div {
     display: flex;
     padding: 10px;
     border-radius: 10px;
     flex: 1;
-    background-color: var(--buttons-color);
+    border: 1px solid lightgrey;
+}
+
+.user a div:hover {
+    box-shadow: 0 0 0 0.1rem rgba(123, 123, 123, 0.25);
 }
 
 .user a {
     color: black;
-    border: 0px;
+    border: 0;
     text-decoration: none;
     cursor: pointer;
     width: 100%;
 }
 
+.user div {
+    color: black;
+    border: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .user:not(:last-child) {
     margin-bottom: 10px;
+}
+
+.wrong-input {
+    outline: 2px solid red;
+}
+
+.shake {
+    animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+@keyframes shake {
+
+    10%,
+    90% {
+        transform: translateX(-1px);
+    }
+
+    20%,
+    80% {
+        transform: translateX(2px);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translateX(-4px);
+    }
+
+    40%,
+    60% {
+        transform: translateX(4px);
+    }
 }

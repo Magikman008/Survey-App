@@ -1,19 +1,27 @@
 {% extends 'index.html' %}
 
 {% block content %}
-    <div class="page-title">Доступные тесты</div>
-
-    <div class="surveys">
-        {% for survey in surveys %}
-            <div class="survey">
-
-                <a href="{% url 'survey_results' survey.id %}">
-                    <div class="title">{{ survey.title }}</div>
-                    <div class="desc">{{ survey.description }}</div>
-                </a>
-            </div>
-        {% endfor %}
-    </div>
+    {% if not user.is_superuser %}
+        <div class="no-access">
+            <p>Извините, у вас нет доступа к этому сайту</p>
+        </div>
+    {% else %}
+        <div class="page-title">Результаты опросов</div>
+        <div class="cards">
+            {% for survey in surveys %}
+                <div class="card">
+                    <a href="{% url 'survey_results' survey.id %}">
+                        <div class="title">{{ survey.title }}</div>
+                        <div class="desc">{{ survey.description }}</div>
+                        <div class="card-info">
+                            <div class="price">{{ survey.price }}<img src="/static/icons/coin.png"></div>
+                            <div class="date">Опубликован: {{ survey.date_completed }}</div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 
 {% endblock %}
 

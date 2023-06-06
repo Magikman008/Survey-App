@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    {% if not user.is_superuser %}
+        <div class="no-access">
+            <p>Извините, у вас нет доступа к этому сайту</p>
+        </div>
+    {% else %}
+        <div class="page-title">Статистика пользователей</div>
+        <div class="question-block">
+            {% for user in users %}
+                <div class="user">
+                    <div>
+                        <div class="username"
+                             style="background-color: {{ user.usermarket_set.first.active_color.hex_code }}">{{ user.username }}
+                            Количество пройденных опросов: {{ user.surveycompletion_set.count }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% endblock %}
+

@@ -14,30 +14,34 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
-from myapp.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.contrib.auth.views import LogoutView
+from django.urls import path
 
+from myapp.views import *
 
 urlpatterns = [
-    path('index/', index, name='index'),
-    path('', index, name='/'),
-    path('admin/', admin.site.urls),
-    path('get_login_code/', get_login_code, name='get_login_code'),
-    path('get_register_code/', get_register_code, name='get_login_code'),
-    path('register/', register_view, name='register'),
-    path('login/', login_view, name='login_view'),
-    path('create_test/', create_test, name='create_test'),
-    path('logout/', LogoutView.as_view(next_page='index'), name='logout'),
-    path('save_survey/', save_survey, name='save_survey'),
-    path('survey/<int:survey_id>/', survey_detail, name='survey-detail'),
-    path('survey_results/<int:survey_id>/', survey_results, name='survey_results'),
-    path('survey_results/<int:survey_id>/<int:user_id>/', user_results, name='user_results'),
-    path('save_answers/', save_answers, name='save_answers'),
-    path('complete_survey/', complete_survey, name='complete_survey'),
-    path('results/', results, name='results'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
+                  path('index/', index, name='index'),
+                  path('', index, name='/'),
+                  path('admin/', admin.site.urls),
+                  path('get_login_code/', get_login_code, name='get_login_code'),
+                  path('get_register_code/', get_register_code, name='get_login_code'),
+                  path('register/', register_view, name='register'),
+                  path('login/', login_view, name='login_view'),
+                  path('create_test/', create_test, name='create_test'),
+                  path('logout/', LogoutView.as_view(next_page='index'), name='logout'),
+                  path('save_survey/', save_survey, name='save_survey'),
+                  path('survey/<int:survey_id>/', survey_detail, name='survey-detail'),
+                  path('survey_results/<int:survey_id>/', survey_results, name='survey_results'),
+                  path('stats/', stats, name='stats'),
+                  path('survey_results/<int:survey_id>/<int:user_id>/', user_results, name='user_results'),
+                  path('save_answers/', save_answers, name='save_answers'),
+                  path('complete_survey/', complete_survey, name='complete_survey'),
+                  path('results/', results, name='results'),
+                  path('market/', market, name='market'),
+                  path('add_color/', add_color, name='add_color'),
+                  path('purchase_color/', purchase_color, name='purchase_color'),
+                  path('activate_color/', activate_color, name='activate_color'),
+              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

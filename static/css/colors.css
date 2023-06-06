@@ -1,0 +1,71 @@
+.card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    background-color: var(--buttons-color);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.color-info {
+    margin-bottom: 35px;
+}
+
+.color-input {
+    height: calc(100% - 35px);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.color-input input {
+    border-radius: 5px;
+}
+
+.activated {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: white;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    height: 35px;
+    font-size: 16px !important;
+}
+
+button.activated {
+    border-radius: 0;
+}
+
+button.activated:hover {
+    border: 0 !important;
+    background-color: #f6f6f6;
+}
+
+.color-name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.color-currency {
+    height: 17px;
+    display: flex;
+    align-items: center;
+}
+
+.active-color {
+    box-shadow: 0 0 0.3rem 0.3rem rgba(255, 215, 0, 0.5);
+}
+
+.nonactive-color {
+    box-shadow: 0 0 0 0.1rem rgba(123, 123, 123, 0.25);
+}

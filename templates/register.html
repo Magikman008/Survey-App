@@ -1,24 +1,24 @@
-<h2>Окно входа</h2>
+<h2>Регистрация</h2>
 <!-- Добавьте элементы формы для входа -->
 <form id="register-form" method="POST">
     {% csrf_token %}
     <p>
-        <input placeholder="Придумайте логин" type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus=""
+        <input placeholder="Придумайте логин" type="text" name="username" maxlength="150" autocapitalize="none"
+               autocomplete="username" autofocus=""
                required="" id="id_username">
         <span class="helptext">150 символов или меньше. Буквы, цифры и @/./+/-/_ только.</span>
     </p>
     <p>
-        <input placeholder="Придумайте пароль" type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+        <input placeholder="Придумайте пароль" type="password" name="password1" autocomplete="new-password" required=""
+               id="id_password1">
 
         <span class="helptext"></span></p>
-    Your password can’t be too similar to your other personal information.<br>
-        Your password must contain at least 8 characters.<br>
-        Your password can’t be a commonly used password.<br>
-        Your password can’t be entirely numeric.<br>
+    Пароль должен быть уникальным и содержать не менее 8 символов, избегайте простых комбинаций и использования только цифр.
     <p></p>
     <p>
-        <input placeholder="Подтвердите пароль" type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
- </p>
+        <input placeholder="Подтвердите пароль" type="password" name="password2" autocomplete="new-password" required=""
+               id="id_password2">
+    </p>
 
     <span id="username-error" class="error"></span>
     <span id="password1-error" class="error"></span>

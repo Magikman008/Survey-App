@@ -39,7 +39,7 @@ $(document).ready(function () {
                 },
                 success: function (response) {
                     if (response.success) {
-                        const id = parseInt($('[data-color-id]').last().data('color-id')) + 1;
+                        const id = parseInt($('.card-info').last().data('color-id')) + 1;
                         const btn = $('<button class="buy-button activated" data-color-id="' + id + '">Купить</button>');
                         btn.click(buy);
                         $('.card').last().after('<div class="card" style="background-color: ' + colorHex + ' !important;   box-shadow: 0 0 0 0.1rem rgba(123, 123, 123, 0.25); "><div class="card-info" id="' + id + '"><div class="color-info"><div class="color-name">' + colorName + '</div><div class="color-currency">Стоимость: ' + colorCost + '<img src="/static/icons/coin.png"></div></div></div></div>');
@@ -75,7 +75,7 @@ $(document).ready(function () {
                     $(e.target).off();
                     $(e.target).click(activate);
                 } else {
-                    alert('Ошибка при покупке цвета!');
+                    alert(response.message);
                 }
             },
             error: function () {

@@ -7,15 +7,21 @@
         </div>
     {% else %}
         <div class="page-title">Результаты опроса "{{ survey.title }}"</div>
-        <div class="question-block">
-            {% for user in users %}
-                <div class="user">
-                    <a href="{% url 'user_results' survey.id user.id %}">
-                        <div class="username"
-                             style="background-color: {{ user.usermarket_set.first.active_color.hex_code }}">{{ user.username }}</div>
-                    </a>
-                </div>
-            {% endfor %}
-        </div>
+        {% if users|length != 0 %}
+            <div class="question-block">
+                {% for user in users %}
+                    <div class="user">
+                        <a href="{% url 'user_results' survey.id user.id %}">
+                            <div class="username"
+                                 style="background-color: {{ user.usermarket_set.first.active_color.hex_code }}">{{ user.username }}</div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-access">
+                <p>Опрос пока никто не прошёл</p>
+            </div>
+        {% endif %}
     {% endif %}
 {% endblock %}
